@@ -2,22 +2,23 @@
 
 Super simple markdown blog: write a post, push, it’s live on GitHub Pages.
 
+Built with my fork [`t0ma5/github-pages-blog-action@v0.1.0`](https://github.com/t0ma5/github-pages-blog-action).
+
 ## Features
 
-- Markdown posts with frontmatter (`title`, `date`, optional `permalink`)
-- **Scheduled posts** — future `date` values stay unpublished until that day
-- Quoted frontmatter titles (safe with `:` and `?`)
+- Markdown posts with frontmatter (`title`, `date`, optional `permalink`, `draft`, `description`)
+- **Scheduled posts** — future `date` values stay unpublished until that UTC day (built into the Action)
+- **Drafts** — `draft: true`, `_filename.md`, or files in `drafts/`
+- Tolerant `site.json` (comments + trailing commas)
+- GFM-friendly markdown (tables, task lists, strikethrough)
 - Kebab-case post filenames
 - `about.md` about page
-- `site.json` for title, SEO, social links, and site URL
-- `static/` assets copied to the site root (including `static/images/`)
-- `drafts/` work in progress, not published
-- Custom dark **Amber Charcoal** theme (`static/css/theme.css`)
-- Favicon (`favicon.svg` / `favicon.png`)
-- Open Graph / Twitter share image (`og.png`)
-- Local preview with **auto-rebuild** on file changes
-- Deploy via fork [`t0ma5/github-pages-blog-action@v0.0.10`](https://github.com/t0ma5/github-pages-blog-action)
-- Deploy on push to `main`/`master`, or manual **workflow_dispatch**
+- `site.json` for title, SEO, social links, site URL, favicon, OG image
+- `static/` assets at the site root (including `static/images/`)
+- Amber dark theme with reading zoom (+/−) and Share
+- Favicon + Open Graph / Twitter cards + canonical URLs + `sitemap.xml`
+- Local preview with auto-rebuild
+- Deploy on push, manual **workflow_dispatch**, or daily midnight-UTC cron
 
 ## Write a post
 
@@ -27,6 +28,7 @@ Add a kebab-case file under `posts/`:
 ---
 title: "My post title: with a colon"
 date: 2026-08-12
+description: "Optional excerpt for SEO/social"
 ---
 
 Your content here.
@@ -36,11 +38,17 @@ Push to `main`/`master` — GitHub Actions publishes to `gh-pages`.
 
 ## Drafts
 
-Put unfinished posts in `drafts/` (not `posts/`). They are ignored on deploy.
+Unfinished work:
+
+- put files in `drafts/`, or
+- keep them in `posts/` with `draft: true`, or
+- name them `_like-this.md`
+
+None of those are published.
 
 ## Scheduled posts
 
-The Action itself publishes every markdown file in `posts/`. This repo adds a pre-deploy step that **hides posts whose frontmatter `date` is in the future** (UTC calendar day), so you can schedule by dating ahead:
+Set a future `date` in frontmatter:
 
 ```md
 ---
@@ -49,51 +57,27 @@ date: 2026-09-01
 ---
 ```
 
-- Stays in `posts/` in git (easy to edit anytime)
-- Skipped on deploy until that date
-- Reappears automatically on the next deploy on/after that day
-
-Trigger a deploy on the publish day (push anything, run the workflow manually, or wait for the daily midnight-UTC cron). Preview also hides future posts unless you opt in.
+The Action skips it until that UTC calendar day. A daily cron redeploy picks it up automatically. Local preview hides future posts unless you opt in.
 
 ## Images
 
-Put images in `static/images/`. Everything under `static/` is copied to the site root, so a file at:
-
-```text
-static/images/diagram.png
-```
-
-is available at:
-
-```text
-https://your-site/images/diagram.png
-```
-
-Link from markdown like this:
+Put images in `static/images/`. A file at `static/images/diagram.png` is served as `/images/diagram.png`:
 
 ```md
 ![Diagram of the build flow](/images/diagram.png)
 ```
 
-Or as a plain link:
-
-```md
-[Download the diagram](/images/diagram.png)
-```
-
-Prefer kebab-case filenames (`my-screenshot.png`) and keep paths root-absolute (`/images/...`) so they work from both the homepage and post pages.
-
 ## Local preview
 
 ```bash
 npm install
-npm run preview            # published posts only (no drafts, no future dates)
+npm run preview            # published posts only
 npm run preview:drafts     # include drafts/
 npm run preview:scheduled  # include future-dated posts
 npm run preview:all        # drafts + scheduled
 ```
 
-Opens at http://localhost:4173 and rebuilds when you edit posts, drafts, theme, or `site.json`.
+Opens at http://localhost:4173.
 
 ## Manual deploy
 
@@ -101,4 +85,4 @@ Actions → **Build and Deploy** → **Run workflow**
 
 ---
 
-Built with my fork of [github-pages-blog-action](https://github.com/t0ma5/github-pages-blog-action) (upstream: [nilbuild](https://github.com/nilbuild/github-pages-blog-action)).
+Action fork: [t0ma5/github-pages-blog-action](https://github.com/t0ma5/github-pages-blog-action) · upstream credit: [nilbuild](https://github.com/nilbuild/github-pages-blog-action).

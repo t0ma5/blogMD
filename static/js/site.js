@@ -4,29 +4,8 @@
   const MAX = 1.4;
   const STEP = 0.1;
 
-  document.querySelectorAll(".link-email, .link-github, .link-twitter, .link-medium").forEach((el) => {
-    el.remove();
-  });
-
-  document.querySelectorAll("footer").forEach((footer) => {
-    if (footer.querySelector("a[href='#top'], a[href='#']")) return;
-    footer.replaceChildren();
-    const link = document.createElement("a");
-    link.href = "#top";
-    link.textContent = "Back to Top";
-    footer.appendChild(link);
-  });
-
   if (!document.getElementById("top")) {
     document.body.id = "top";
-  }
-
-  if (!document.querySelector('link[rel="icon"]')) {
-    const icon = document.createElement("link");
-    icon.rel = "icon";
-    icon.href = "/favicon.svg";
-    icon.type = "image/svg+xml";
-    document.head.appendChild(icon);
   }
 
   function getScale() {
@@ -56,8 +35,6 @@
       right.className = "nav__right";
       nav.appendChild(right);
     }
-
-    right.querySelectorAll("a.link-github, a.link-twitter, a.link-medium, a.link-email").forEach((a) => a.remove());
 
     let center = nav.querySelector(".nav__center");
     if (!center) {
@@ -132,12 +109,4 @@
 
   applyScale(getScale());
   ensureNavControls();
-
-  // Action renders <time> before <h1>; move date under the title.
-  document.querySelectorAll("time").forEach((timeEl) => {
-    const heading = timeEl.nextElementSibling;
-    if (heading && /^H[1-6]$/i.test(heading.tagName)) {
-      heading.after(timeEl);
-    }
-  });
 })();
