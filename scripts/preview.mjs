@@ -101,7 +101,15 @@ function loadPosts() {
       const raw = fs.readFileSync(filePath, "utf8");
       const { data, content } = parseMatter(raw, path.relative(root, filePath));
       const scheduled = isFutureDate(data.date);
+      const isDraftPost =
+        dir.endsWith("drafts") ||
+        name.startsWith("_") ||
+        data.draft === true ||
+        data.draft === "true" ||
+        data.draft === "yes";
       if (scheduled && !includeScheduled) continue;
+      if (isDraftPost && !includeDrafts && !dir.endsWith("drafts")) continue;
+      if (dir.endsWith("drafts") && !includeDrafts) continue;
 
       const title = data.title || path.basename(name, ".md");
       const permalink = (data.permalink || `/${slugify(title)}`).replace(/\/$/, "");
@@ -111,7 +119,7 @@ function loadPosts() {
         sortDate: data.date ? new Date(data.date) : new Date(0),
         permalink,
         html: marked.parse(content),
-        draft: dir.endsWith("drafts"),
+        draft: isDraftPost,
         scheduled,
         description: String(content)
           .replace(/[#>*_`\[\]]/g, " ")
