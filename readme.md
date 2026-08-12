@@ -1,8 +1,8 @@
 # blogMD
 
-Super simple markdown blog: write a post, push, it’s live on GitHub Pages. Read more on the [live blog](https://t0ma5.github.io/how-this-blog-works.html).
+Super simple markdown blog: write a post, push, it’s live on GitHub Pages. Read more on the [LIVE BLOG](https://t0ma5.github.io/how-this-blog-works.html).
 
-Built with my fork [`t0ma5/github-pages-blog-action@v0.1.2`](https://github.com/t0ma5/github-pages-blog-action).
+Built with my fork [`github-pages-blog-action`](https://github.com/t0ma5/github-pages-blog-action).
 
 ## Features
 
