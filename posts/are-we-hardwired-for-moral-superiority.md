@@ -3,7 +3,7 @@ title: "Are We Hardwired for Moral Superiority?"
 date: 2026-08-11
 ---
 
-# Human Psychology
+## Human Psychology
 
 This is one of the most penetrating questions you can ask about human nature. The short answer is **yes, we have a profound, systematic bias toward thinking we are morally superior to others**, and **yes, it is deeply rooted in our survival instincts**—but not in the way we usually think about physical survival. It is rooted in *social* survival.
 
