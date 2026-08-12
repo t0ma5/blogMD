@@ -1,0 +1,1 @@
+A messy, honest collection of things I stumbled upon by accident and couldn't stop thinking about. No algorithm. No agenda. Just lucky mistakes, rabbit holes, and the quiet thrill of finding something weird and wonderful in the dark.

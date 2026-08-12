@@ -1,0 +1,14 @@
+{
+  "name": "blogmd",
+  "private": true,
+  "scripts": {
+    "preview": "node scripts/preview.mjs",
+    "preview:drafts": "node scripts/preview.mjs --drafts",
+    "preview:scheduled": "node scripts/preview.mjs --scheduled",
+    "preview:all": "node scripts/preview.mjs --drafts --scheduled"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.12"
+  }
+}

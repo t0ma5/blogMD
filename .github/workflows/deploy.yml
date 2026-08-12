@@ -1,0 +1,55 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+  # Pick up posts whose frontmatter date becomes "today" (UTC)
+  schedule:
+    - cron: "15 0 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install preview deps
+        run: npm ci
+
+      - name: Hide future-dated posts
+        run: node scripts/hide-scheduled.mjs
+
+      - name: Deploy
+        uses: kamranahmedse/github-pages-blog-action@v0.0.10
+        with:
+          branch: gh-pages
+
+      - name: Patch pages (favicon, OG, site.js)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          SITE_URL=$(node -e "const s=require('./site.json'); console.log(s.url || ('https://' + s.cname))")
+          git fetch origin gh-pages
+          git worktree add /tmp/gh-pages gh-pages
+
+          node scripts/patch-pages.mjs /tmp/gh-pages "$SITE_URL"
+
+          cd /tmp/gh-pages
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No HTML changes to commit"
+          else
+            git commit -m "Inject favicon, Open Graph tags, and site.js"
+            git push origin HEAD:gh-pages
+          fi

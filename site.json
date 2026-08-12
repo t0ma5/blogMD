@@ -1,0 +1,22 @@
+{
+  "title": "blogMD",
+  "subtitle": "42 tomatoes",
+  "url": "https://t0ma5.github.io",
+  "owner": {
+    "name": "t0+"
+  },
+  "social": {
+    "github": "t0ma5"
+  },
+  "seo": {
+    "title": "t0+ blogMD",
+    "description": "Random things I find interesting",
+    "author": "t0+",
+    "keywords": [
+      "blog",
+      "random",
+      "markdown"
+    ]
+  },
+  "cname": "t0ma5.github.io"
+}
