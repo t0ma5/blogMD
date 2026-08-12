@@ -81,15 +81,11 @@ Opens at http://localhost:4173.
 
 ## GitHub Pages
 
-After the Action deploys to the `gh-pages` branch:
+Live site: **https://t0ma5.github.io/**
 
-1. Open https://github.com/t0ma5/blogMD/settings/pages
-2. Under **Build and deployment → Source**, choose **Deploy from a branch**
-3. Branch: **`gh-pages`** / folder **`/`** → Save
+The content repo is named `t0ma5.github.io` (GitHub’s user-site convention). The Action deploys to the `gh-pages` branch; Pages serves that branch at the root URL.
 
-Your blog will be at: **https://t0ma5.github.io/blogMD/**
-
-(`site.json` uses `"baseUrl": "/blogMD"` for that project-site path.)
+Settings: **Settings → Pages → Deploy from a branch → `gh-pages` / `/`**
 
 ---
 
