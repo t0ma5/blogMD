@@ -9,7 +9,7 @@ This site is a deliberately simple markdown blog. There is no CMS, no database, 
 
 Write a post as a `.md` file, push it, and the site updates. That is the whole workflow.
 
-Under the hood it uses a mod of [github-pages-blog-action](https://github.com/nilbuild/github-pages-blog-action): on every push to `main`/`master`, the Action builds HTML from markdown and deploys it to the `gh-pages` branch.
+Under the hood it uses my fork of [github-pages-blog-action](https://github.com/t0ma5/github-pages-blog-action): on every push to `main`/`master`, the Action builds HTML from markdown and deploys it to the `gh-pages` branch.
 
 ## What lives in the repo
 

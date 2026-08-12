@@ -30,7 +30,7 @@ jobs:
         run: node scripts/hide-scheduled.mjs
 
       - name: Deploy
-        uses: kamranahmedse/github-pages-blog-action@v0.0.10
+        uses: t0ma5/github-pages-blog-action@v0.0.10
         with:
           branch: gh-pages
 

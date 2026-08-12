@@ -1,23 +1,22 @@
 # blogMD
 
-Simple markdown blog: write a post, push, it’s live on GitHub Pages.
+Super simple markdown blog: write a post, push, it’s live on GitHub Pages.
 
 ## Features
 
 - Markdown posts with frontmatter (`title`, `date`, optional `permalink`)
+- **Scheduled posts** — future `date` values stay unpublished until that day
 - Quoted frontmatter titles (safe with `:` and `?`)
 - Kebab-case post filenames
-- **Scheduled posts** — future `date` values stay unpublished until that day
 - `about.md` about page
 - `site.json` for title, SEO, social links, and site URL
 - `static/` assets copied to the site root (including `static/images/`)
+- `drafts/` work in progress, not published
 - Custom dark **Amber Charcoal** theme (`static/css/theme.css`)
-- Styled `404` page
 - Favicon (`favicon.svg` / `favicon.png`)
 - Open Graph / Twitter share image (`og.png`)
-- Drafts in `drafts/` (not published)
 - Local preview with **auto-rebuild** on file changes
-- Deploy via `kamranahmedse/github-pages-blog-action@v0.0.10`
+- Deploy via fork [`t0ma5/github-pages-blog-action@v0.0.10`](https://github.com/t0ma5/github-pages-blog-action)
 - Deploy on push to `main`/`master`, or manual **workflow_dispatch**
 
 ## Write a post
@@ -34,6 +33,27 @@ Your content here.
 ```
 
 Push to `main`/`master` — GitHub Actions publishes to `gh-pages`.
+
+## Drafts
+
+Put unfinished posts in `drafts/` (not `posts/`). They are ignored on deploy.
+
+## Scheduled posts
+
+The Action itself publishes every markdown file in `posts/`. This repo adds a pre-deploy step that **hides posts whose frontmatter `date` is in the future** (UTC calendar day), so you can schedule by dating ahead:
+
+```md
+---
+title: "Ship notes"
+date: 2026-09-01
+---
+```
+
+- Stays in `posts/` in git (easy to edit anytime)
+- Skipped on deploy until that date
+- Reappears automatically on the next deploy on/after that day
+
+Trigger a deploy on the publish day (push anything, run the workflow manually, or wait for the daily midnight-UTC cron). Preview also hides future posts unless you opt in.
 
 ## Images
 
@@ -63,27 +83,6 @@ Or as a plain link:
 
 Prefer kebab-case filenames (`my-screenshot.png`) and keep paths root-absolute (`/images/...`) so they work from both the homepage and post pages.
 
-## Drafts
-
-Put unfinished posts in `drafts/` (not `posts/`). They are ignored on deploy.
-
-## Scheduled posts
-
-The Action itself publishes every markdown file in `posts/`. This repo adds a pre-deploy step that **hides posts whose frontmatter `date` is in the future** (UTC calendar day), so you can schedule by dating ahead:
-
-```md
----
-title: "Ship notes"
-date: 2026-09-01
----
-```
-
-- Stays in `posts/` in git (easy to edit anytime)
-- Skipped on deploy until that date
-- Reappears automatically on the next deploy on/after that day
-
-Trigger a deploy on the publish day (push anything, run the workflow manually, or wait for the daily midnight-UTC cron). Preview also hides future posts unless you opt in.
-
 ## Local preview
 
 ```bash
@@ -102,4 +101,4 @@ Actions → **Build and Deploy** → **Run workflow**
 
 ---
 
-Built with [github-pages-blog-action](https://github.com/nilbuild/github-pages-blog-action). Credit: [nilbuild](https://github.com/nilbuild).
+Built with my fork of [github-pages-blog-action](https://github.com/t0ma5/github-pages-blog-action) (upstream: [nilbuild](https://github.com/nilbuild/github-pages-blog-action)).
