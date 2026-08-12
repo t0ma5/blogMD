@@ -2,7 +2,7 @@
 
 Super simple markdown blog: write a post, push, it’s live on GitHub Pages.
 
-Built with my fork [`t0ma5/github-pages-blog-action@v0.1.0`](https://github.com/t0ma5/github-pages-blog-action).
+Built with my fork [`t0ma5/github-pages-blog-action@v0.1.1`](https://github.com/t0ma5/github-pages-blog-action).
 
 ## Features
 
@@ -79,9 +79,17 @@ npm run preview:all        # drafts + scheduled
 
 Opens at http://localhost:4173.
 
-## Manual deploy
+## GitHub Pages
 
-Actions → **Build and Deploy** → **Run workflow**
+After the Action deploys to the `gh-pages` branch:
+
+1. Open https://github.com/t0ma5/blogMD/settings/pages
+2. Under **Build and deployment → Source**, choose **Deploy from a branch**
+3. Branch: **`gh-pages`** / folder **`/`** → Save
+
+Your blog will be at: **https://t0ma5.github.io/blogMD/**
+
+(`site.json` uses `"baseUrl": "/blogMD"` for that project-site path.)
 
 ---
 

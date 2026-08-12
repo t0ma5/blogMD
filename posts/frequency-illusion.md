@@ -1,5 +1,5 @@
 ---
-title: Frequency Illusion: A Cognitive Quirk with Evolutionary Roots
+title: "Frequency Illusion: A Cognitive Quirk with Evolutionary Roots"
 date: 2026-08-14
 ---
 

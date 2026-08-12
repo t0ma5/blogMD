@@ -1,7 +1,8 @@
 {
   "title": "blogMD",
   "subtitle": "42 tomatoes",
-  "url": "https://t0ma5.github.io",
+  "url": "https://t0ma5.github.io/blogMD",
+  "baseUrl": "/blogMD",
   "owner": {
     "name": "t0+"
   },
@@ -17,6 +18,5 @@
       "random",
       "markdown"
     ]
-  },
-  "cname": "t0ma5.github.io"
+  }
 }
